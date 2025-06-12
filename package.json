@@ -1,0 +1,30 @@
+{
+  "scripts": {
+    "dev": "vike dev",
+    "build": "vike build",
+    "preview": "cross-env NODE_ENV=production tsx ./hono-entry.node.ts",
+    "lint": "biome lint --write .",
+    "format": "biome format --write ."
+  },
+  "dependencies": {
+    "vike": "^0.4.231",
+    "@hono/node-server": "^1.14.4",
+    "@universal-middleware/hono": "^0.4.12",
+    "hono": "^4.7.11",
+    "@universal-middleware/core": "^0.4.7",
+    "solid-js": "^1.9.7",
+    "vike-solid": "^0.7.11",
+    "@trpc/server": "^11.3.1",
+    "@trpc/client": "^11.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "@biomejs/biome": "1.9.4",
+    "@hono/vite-dev-server": "^0.19.1",
+    "@types/node": "^18.19.110",
+    "tsx": "^4.19.4",
+    "cross-env": "^7.0.3"
+  },
+  "type": "module"
+}
