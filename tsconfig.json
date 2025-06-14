@@ -20,7 +20,11 @@
       "vike-solid/client"
     ],
     "jsx": "react-jsx",
-    "jsxImportSource": "solid-js"
+    "jsxImportSource": "solid-js",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+    },
   },
   "exclude": [
     "dist"

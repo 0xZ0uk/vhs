@@ -4,11 +4,13 @@ import { defineConfig } from "vite";
 import vike from "vike/plugin";
 
 export default defineConfig({
+  server: {
+    
+  },
   plugins: [
     vike(),
     devServer({
-      entry: "hono-entry.ts",
-
+      entry: "src/hono-entry.ts",
       exclude: [
         /^\/@.+$/,
         /.*\.(ts|tsx|vue)($|\?)/,
@@ -18,7 +20,6 @@ export default defineConfig({
         /^\/(public|assets|static)\/.+/,
         /^\/node_modules\/.*/,
       ],
-
       injectClientScript: false,
     }),
     vikeSolid(),
