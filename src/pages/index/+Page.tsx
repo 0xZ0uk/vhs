@@ -1,4 +1,4 @@
-import { Counter } from "./Counter.js";
+import { Post } from "./Post";
 
 export default function Page() {
   return (
@@ -8,7 +8,7 @@ export default function Page() {
       <ul>
         <li>Rendered to HTML.</li>
         <li>
-          Interactive. <Counter />
+          Interactive. <Post />
         </li>
       </ul>
     </>

@@ -3,25 +3,28 @@ import "./style.css";
 import type { JSX } from "solid-js";
 import logoUrl from "../assets/logo.svg";
 import { Link } from "../components/Link.js";
+import { TRPCSolidProvider } from "@/trpc/client";
 
 export default function LayoutDefault(props: { children?: JSX.Element }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        "max-width": "900px",
-        margin: "auto",
-      }}
-    >
-      <Sidebar>
-        <Logo />
-        <Link href="/">Welcome</Link>
-        <Link href="/todo">Todo</Link>
-        <Link href="/star-wars">Data Fetching</Link>
-        {""}
-      </Sidebar>
-      <Content>{props.children}</Content>
-    </div>
+    <TRPCSolidProvider>
+      <div
+        style={{
+          display: "flex",
+          "max-width": "900px",
+          margin: "auto",
+        }}
+      >
+        <Sidebar>
+          <Logo />
+          <Link href="/">Welcome</Link>
+          <Link href="/todo">Todo</Link>
+          <Link href="/star-wars">Data Fetching</Link>
+          {""}
+        </Sidebar>
+        <Content>{props.children}</Content>
+      </div>
+    </TRPCSolidProvider>
   );
 }
 

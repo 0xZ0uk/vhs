@@ -7,14 +7,20 @@
     "format": "biome format --write ."
   },
   "dependencies": {
-    "vike": "^0.4.231",
-    "@universal-middleware/hono": "^0.4.12",
-    "hono": "^4.7.11",
-    "@universal-middleware/core": "^0.4.7",
-    "solid-js": "^1.9.7",
-    "vike-solid": "^0.7.11",
-    "@trpc/server": "^11.3.1",
+    "@kobalte/core": "^0.13.10",
+    "@tanstack/solid-query": "^5.80.6",
     "@trpc/client": "^11.3.1",
+    "@trpc/server": "^11.3.1",
+    "@universal-middleware/core": "^0.4.7",
+    "@universal-middleware/hono": "^0.4.12",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "hono": "^4.7.11",
+    "solid-js": "^1.9.7",
+    "superjson": "^2.2.2",
+    "tailwind-merge": "^3.3.1",
+    "vike": "^0.4.231",
+    "vike-solid": "^0.7.11",
     "zod": "^3.25.63"
   },
   "devDependencies": {
@@ -22,7 +28,8 @@
     "vite": "^6.3.5",
     "@biomejs/biome": "1.9.4",
     "@hono/vite-dev-server": "^0.19.1",
-    "@types/node": "^18.19.110",
+    "@tanstack/solid-query-devtools": "^5.80.7",
+    "@types/bun": "latest",
     "tsx": "^4.19.4",
     "cross-env": "^7.0.3"
   },

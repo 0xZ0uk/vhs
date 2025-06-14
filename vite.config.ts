@@ -4,9 +4,6 @@ import { defineConfig } from "vite";
 import vike from "vike/plugin";
 
 export default defineConfig({
-  server: {
-    
-  },
   plugins: [
     vike(),
     devServer({
@@ -27,4 +24,9 @@ export default defineConfig({
   build: {
     target: "es2022",
   },
+  resolve: {
+    alias: {
+      "@": "/src",
+    },
+  }
 });
