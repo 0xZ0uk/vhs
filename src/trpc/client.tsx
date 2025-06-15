@@ -1,43 +1,11 @@
-import { type QueryClient, QueryClientProvider } from "@tanstack/solid-query";
-import { SolidQueryDevtools } from "@tanstack/solid-query-devtools";
-import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
-import type { ParentProps } from "solid-js";
-import { createQueryClient } from "./query-client";
-import type { AppRouter } from "@/server/api/root";
+import { QueryClient } from "@tanstack/solid-query";
 
-let clientQueryClientSingleton: QueryClient | undefined = undefined;
-const getQueryClient = () => {
-	if (typeof window === "undefined") {
-		// Server: always make a new query client
-		return createQueryClient();
-	}
-	// Browser: use singleton pattern to keep the same query client
-	clientQueryClientSingleton ??= createQueryClient();
-
-	return clientQueryClientSingleton;
-};
-
-/**
- * Inference helper for inputs.
- *
- * @example type HelloInput = RouterInputs['example']['hello']
- */
-export type RouterInputs = inferRouterInputs<AppRouter>;
-
-/**
- * Inference helper for outputs.
- *
- * @example type HelloOutput = RouterOutputs['example']['hello']
- */
-export type RouterOutputs = inferRouterOutputs<AppRouter>;
-
-export function TRPCSolidProvider(props: ParentProps) {
-	const queryClient = getQueryClient();
-
-	return (
-		<QueryClientProvider client={queryClient}>
-			<SolidQueryDevtools />
-			{props.children}
-		</QueryClientProvider>
-	);
-}
+export const createQueryClient = () =>
+	new QueryClient({
+		defaultOptions: {
+			queries: {
+				staleTime: 60 * 1000,
+				refetchOnWindowFocus: false,
+			},
+		},
+	});

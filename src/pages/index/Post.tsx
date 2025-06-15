@@ -1,50 +1,54 @@
-import { Button } from "../../components/Button.js";
-import { Input } from "@/components/Input";
 import { api } from "@/lib/api";
-import { useMutation } from "@tanstack/solid-query";
+import { useMutation, useQuery } from "@tanstack/solid-query";
 import { createSignal } from "solid-js";
 
-
 export function Post() {
-	const [title, setTitle] = createSignal<string>("");
+	const [title, setTitle] = createSignal("");
 
-	const [result, setResult] = createSignal<{ message: string } | undefined>(
-		undefined,
-	);
+	const latestPosts = useQuery(() => ({
+		queryKey: ["latestPosts"],
+		queryFn: () => api.post.getLatest.query(),
+	}));
 
-	const { mutate } = useMutation(() => ({
-		mutationFn: ({ title }: { title: string }) => {
-			return api.post.create.mutate({ title });
+	const createPost = useMutation(() => ({
+		mutationFn: (data: { title: string }) => {
+			return api.post.create.mutate({ name: data.title });
 		},
 		onSuccess: (data) => {
-			setResult(data);
+			latestPosts.refetch();
+			setTitle("");
 		},
 	}));
 
-	const handleChangeCasseteTitle = (value: string) => {
-		setTitle(value);
-	};
-
 	return (
-		<div class="space-y-2">
-			<Input
-				type="text"
-				value={title()}
-				onChange={(e) => handleChangeCasseteTitle(e.currentTarget.value)}
-			/>
-			<Button
-				size="lg"
-				onClick={() => {
-					mutate({ title: title() });
-				}}
-			>
-				Try the "Hello VHS" tRPC route
-			</Button>
-			{result() && (
-				<pre class="rounded-md bg-muted p-2 text-muted-foreground">
-					{result()?.message}
-				</pre>
+		<div class="w-full">
+			{latestPosts.data ? (
+				<p class="truncate">Your most recent post: {latestPosts.data.name}</p>
+			) : (
+				<p>You have no posts yet.</p>
 			)}
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					createPost.mutate({ title: title() });
+				}}
+				class="flex flex-col gap-2"
+			>
+				<input
+					type="text"
+					placeholder="Title"
+					value={title()}
+					onChange={(e) => setTitle(e.target.value)}
+					class="w-full rounded-full bg-white/10 px-4 py-2 text-white"
+				/>
+				<button
+					type="submit"
+					class="rounded-full bg-white/10 px-10 py-3 font-semibold transition hover:bg-white/20"
+					disabled={createPost.isPending}
+				>
+					{createPost.isPending ? "Submitting..." : "Submit"}
+				</button>
+			</form>
 		</div>
 	);
 }

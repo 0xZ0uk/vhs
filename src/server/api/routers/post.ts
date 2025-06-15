@@ -1,17 +1,38 @@
-import { createTRPCRouter, publicProcedure } from "../trpc";
 import { z } from "zod";
+import { createTRPCRouter, publicProcedure } from "../trpc";
+
+// Mocked DB
+interface Post {
+	id: number;
+	name: string;
+}
+const posts: Post[] = [
+	{
+		id: 1,
+		name: "Hello World",
+	},
+];
 
 export const postRouter = createTRPCRouter({
-    	hello: publicProcedure.query(() => {
-		return {
-			message: "Hello from VHS",
-		};
-	}),
-	create: publicProcedure
-		.input(z.object({ title: z.string() }))
-		.mutation(({ input }) => {
+	hello: publicProcedure
+		.input(z.object({ text: z.string() }))
+		.query(({ input }) => {
 			return {
-				message: `Now playing: ${input.title}`,
+				greeting: `Hello ${input.text}`,
 			};
 		}),
-})
+	create: publicProcedure
+		.input(z.object({ name: z.string().min(1) }))
+		.mutation(async ({ input }) => {
+			const post: Post = {
+				id: posts.length + 1,
+				name: input.name,
+			};
+			posts.push(post);
+			return post;
+		}),
+
+	getLatest: publicProcedure.query(() => {
+		return posts.at(-1) ?? null;
+	}),
+});

@@ -1,79 +1,31 @@
 import "@/styles/globals.css";
 
+import { createQueryClient } from "@/trpc/client";
+import { ColorModeProvider, ColorModeScript } from "@kobalte/core";
+import { QueryClientProvider } from "@tanstack/solid-query";
 import type { JSX } from "solid-js";
-import logoUrl from "@/assets/logo.svg";
-import { Link } from "@/components/Link";
-import { TRPCSolidProvider } from "@/trpc/client";
 
 export default function LayoutDefault(props: { children?: JSX.Element }) {
-  return (
-    <TRPCSolidProvider>
-      <div
-        style={{
-          display: "flex",
-          "max-width": "900px",
-          margin: "auto",
-        }}
-      >
-        <Sidebar>
-          <Logo />
-          <Link href="/">Welcome</Link>
-          <Link href="/todo">Todo</Link>
-          <Link href="/star-wars">Data Fetching</Link>
-          {""}
-        </Sidebar>
-        <Content>{props.children}</Content>
-      </div>
-    </TRPCSolidProvider>
-  );
-}
-
-function Sidebar(props: { children: JSX.Element }) {
-  return (
-    <div
-      id="sidebar"
-      style={{
-        padding: "20px",
-        "flex-shrink": 0,
-        display: "flex",
-        "flex-direction": "column",
-        "line-height": "1.8em",
-        "border-right": "2px solid #eee",
-      }}
-    >
-      {props.children}
-    </div>
-  );
+	return (
+		<Providers>
+			<main class="mx-auto flex min-h-screen flex-col items-center justify-start bg-gradient-to-b from-50% from-transparent to-red-950/50 p-4 text-center text-foreground">
+				<Content>{props.children}</Content>
+			</main>
+		</Providers>
+	);
 }
 
 function Content(props: { children: JSX.Element }) {
-  return (
-    <div id="page-container">
-      <div
-        id="page-content"
-        style={{
-          padding: "20px",
-          "padding-bottom": "50px",
-          "min-height": "100vh",
-        }}
-      >
-        {props.children}
-      </div>
-    </div>
-  );
+	return <div>{props.children}</div>;
 }
 
-function Logo() {
-  return (
-    <div
-      style={{
-        "margin-top": "20px",
-        "margin-bottom": "10px",
-      }}
-    >
-      <a href="/">
-        <img src={logoUrl} height={64} width={64} alt="logo" />
-      </a>
-    </div>
-  );
+const queryClient = createQueryClient();
+
+function Providers(props: { children: JSX.Element }) {
+	return (
+		<QueryClientProvider client={queryClient}>
+			<ColorModeScript />
+			<ColorModeProvider>{props.children}</ColorModeProvider>
+		</QueryClientProvider>
+	);
 }
