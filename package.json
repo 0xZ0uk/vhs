@@ -11,7 +11,7 @@
     "@kobalte/core": "^0.13.10",
     "@kobalte/tailwindcss": "^0.9.0",
     "@tailwindcss/vite": "^4.1.10",
-    "@tanstack/solid-query": "^5.80.6",
+    "@tanstack/solid-query": "^5.80.7",
     "@trpc/client": "^11.3.1",
     "@trpc/server": "^11.3.1",
     "@universal-middleware/core": "^0.4.7",
@@ -25,6 +25,7 @@
     "tailwindcss": "^4.1.10",
     "vike": "^0.4.231",
     "vike-solid": "^0.7.11",
+    "vike-solid-query": "^0.1.0",
     "zod": "^3.25.63"
   },
   "devDependencies": {

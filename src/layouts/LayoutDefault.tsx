@@ -3,11 +3,11 @@ import "@/styles/globals.css";
 import type { JSX } from "solid-js";
 import logoUrl from "@/assets/logo.svg";
 import { Link } from "@/components/Link";
-import { TRPCSolidProvider } from "@/trpc/client";
+import { SolidQueryDevtools } from '@tanstack/solid-query-devtools'
+
 
 export default function LayoutDefault(props: { children?: JSX.Element }) {
   return (
-    <TRPCSolidProvider>
       <div
         style={{
           display: "flex",
@@ -23,8 +23,8 @@ export default function LayoutDefault(props: { children?: JSX.Element }) {
           {""}
         </Sidebar>
         <Content>{props.children}</Content>
+        <SolidQueryDevtools />
       </div>
-    </TRPCSolidProvider>
   );
 }
 
