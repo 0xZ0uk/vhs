@@ -1,8 +1,8 @@
-import "./style.css";
+import "@/styles/globals.css";
 
 import type { JSX } from "solid-js";
-import logoUrl from "../assets/logo.svg";
-import { Link } from "../components/Link.js";
+import logoUrl from "@/assets/logo.svg";
+import { Link } from "@/components/Link";
 import { TRPCSolidProvider } from "@/trpc/client";
 
 export default function LayoutDefault(props: { children?: JSX.Element }) {

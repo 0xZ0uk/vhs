@@ -2,10 +2,12 @@ import vikeSolid from "vike-solid/vite";
 import devServer from "@hono/vite-dev-server";
 import { defineConfig } from "vite";
 import vike from "vike/plugin";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [
     vike(),
+    tailwindcss(),
     devServer({
       entry: "src/hono-entry.ts",
       exclude: [

@@ -1,7 +1,7 @@
 import { vikeHandler } from "./server/vike-handler";
 import { Hono } from "hono";
 import { createHandler } from "@universal-middleware/hono";
-import { trpcHandler } from "./server/trpc-handler";
+import { trpcHandler } from "./trpc/server";
 
 const app = new Hono();
 
