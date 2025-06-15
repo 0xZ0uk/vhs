@@ -8,6 +8,7 @@
 	},
 	"dependencies": {
 		"@fontsource-variable/inter": "^5.2.6",
+		"@kobalte/core": "^0.13.10",
 		"@tailwindcss/vite": "^4.1.10",
 		"@tanstack/solid-query": "^5.80.6",
 		"@trpc/client": "^11.3.1",

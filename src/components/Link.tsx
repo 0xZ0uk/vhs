@@ -1,4 +1,3 @@
-import { cn } from "@/lib/cn";
 import type { JSX } from "solid-js";
 
 export function Link(props: {

@@ -1,8 +1,8 @@
 import { createHandler } from "@universal-middleware/hono";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import { trpcHandler } from "./server/trpc-handler";
 import { vikeHandler } from "./server/vike-handler";
-import { trpcHandler } from "./trpc/server";
 
 const app = new Hono();
 
