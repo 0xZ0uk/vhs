@@ -1,49 +1,44 @@
-Generated with [vike.dev/new](https://vike.dev/new) ([version 443](https://www.npmjs.com/package/create-vike/v/0.0.443)) using this command:
+<p align="center">
+  <br/>
+  <a href="https://vhs.dev">VHS</a> is a web development stack built for the modern web &mdash;
+  <br/>
+  focused on simplicity and full type-safety.
+  <br/><br/>
+</p>
 
-```sh
-bun create vike@latest --solid --trpc --hono --biome
+<div align="center">
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/0xZ0uk/create-vhs/blob/main/LICENSE)
+
+</div>
+
+## Install
+
+The **recommended** way to install the latest version of VHS is by running the command below:
+
+```bash
+bun create vhs@latest
 ```
 
-## Contents
+Looking for help? Start with our [Getting Started](https://docs.vhs.dev/en/getting-started/) guide.
 
-* [`/pages/+config.ts`](#pagesconfigts)
-* [Routing](#routing)
-* [`/pages/_error/+Page.jsx`](#pages_errorpagejsx)
-* [`/pages/+onPageTransitionStart.ts` and `/pages/+onPageTransitionEnd.ts`](#pagesonpagetransitionstartts-and-pagesonpagetransitionendts)
-* [SSR](#ssr)
-* [HTML Streaming](#html-streaming)
 
-This app is ready to start. It's powered by [Vike](https://vike.dev) and [SolidJS](https://www.solidjs.com/guides/getting-started).
+## Documentation
 
-### `/pages/+config.ts`
+Visit our [official documentation](https://docs.vhs.dev/).
 
-Such `+` files are [the interface](https://vike.dev/config) between Vike and your code. It defines:
+## Support
 
-* A default [`<Layout>` component](https://vike.dev/Layout) (that wraps your [`<Page>` components](https://vike.dev/Page)).
-* A default [`title`](https://vike.dev/title).
-* Global [`<head>` tags](https://vike.dev/head-tags).
+Having trouble? Please open an issue, or [DM me on Farcaster](https://farcaster.xyz/z0uk).
 
-### Routing
+## Directory
 
-[Vike's built-in router](https://vike.dev/routing) lets you choose between:
+| Package                                                                                    | Release Notes                                                                                                                                                                      |
+| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [create-vhs](packages/create-vhs)                                                      | [![create-vhs version](https://img.shields.io/npm/v/create-vhs.svg?label=%20)](packages/create-vhs/CHANGELOG.md)                                                             |
 
-* [Filesystem Routing](https://vike.dev/filesystem-routing) (the URL of a page is determined based on where its `+Page.jsx` file is located on the filesystem)
-* [Route Strings](https://vike.dev/route-string)
-* [Route Functions](https://vike.dev/route-function)
+## Links
 
-### `/pages/_error/+Page.jsx`
-
-The [error page](https://vike.dev/error-page) which is rendered when errors occur.
-
-### `/pages/+onPageTransitionStart.ts` and `/pages/+onPageTransitionEnd.ts`
-
-The [`onPageTransitionStart()` hook](https://vike.dev/onPageTransitionStart), together with [`onPageTransitionEnd()`](https://vike.dev/onPageTransitionEnd), enables you to implement page transition animations.
-
-### SSR
-
-SSR is enabled by default. You can [disable it](https://vike.dev/ssr) for all your pages or only for some pages.
-
-### HTML Streaming
-
-You can enable/disable [HTML streaming](https://vike.dev/stream) for all your pages, or only for some pages while still using it for others.
+- [License (MIT)](LICENSE)
+- [Website](https://vhs.dev/)
 
