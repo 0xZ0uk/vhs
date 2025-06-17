@@ -2,9 +2,12 @@ import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError, z } from "zod/v4";
 
-export const createTRPCContext = async (opts: { req?: Request }) => {
+import { db } from "@/server/db";
+
+export const createTRPCContext = async (opts: { headers: Headers }) => {
 	return {
-		// Add your context here (database, auth, etc.)
+		db,
+		...opts,
 	};
 };
 

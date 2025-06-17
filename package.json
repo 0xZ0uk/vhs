@@ -1,10 +1,16 @@
 {
 	"scripts": {
-		"dev": "vike dev",
 		"build": "vike build",
+		"check": "biome check .",
+		"check:unsafe": "biome check --write --unsafe .",
+		"check:write": "biome check --write .",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:push": "drizzle-kit push",
+		"db:studio": "drizzle-kit studio",
+		"dev": "vike dev",
 		"preview": "cross-env NODE_ENV=production tsx ./hono-entry.static.ts",
-		"lint": "biome lint --write .",
-		"format": "biome format --write ."
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@fontsource-variable/inter": "^5.2.6",
@@ -14,7 +20,9 @@
 		"@trpc/server": "^11.3.1",
 		"@universal-middleware/core": "^0.4.7",
 		"@universal-middleware/hono": "^0.4.12",
+		"drizzle-orm": "^0.44.2",
 		"hono": "^4.7.11",
+		"postgres": "^3.4.7",
 		"solid-js": "^1.9.7",
 		"superjson": "^2.2.2",
 		"vike": "^0.4.231",
@@ -30,6 +38,7 @@
 		"@unocss/preset-wind4": "^66.2.1",
 		"@unocss/reset": "^66.2.1",
 		"cross-env": "^7.0.3",
+		"drizzle-kit": "^0.31.1",
 		"tsx": "^4.19.4",
 		"typescript": "^5.8.3",
 		"unocss": "^66.2.1",

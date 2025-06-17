@@ -20,11 +20,7 @@
 					}
 				}
 			},
-			"recommended": true,
-			"suspicious": {
-				"noArrayIndexKey": "warn",
-				"noExplicitAny": "warn"
-			}
+			"recommended": true
 		}
 	}
 }

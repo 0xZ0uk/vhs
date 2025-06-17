@@ -1,8 +1,9 @@
 import { api } from "@/lib/api";
 import { useMutation, useQuery } from "@tanstack/solid-query";
-import { createSignal } from "solid-js";
+import { Show, createSignal } from "solid-js";
+import type { Component } from "solid-js";
 
-export function Post() {
+export const Post: Component = () => {
 	const [title, setTitle] = createSignal("");
 
 	const latestPosts = useQuery(() => ({
@@ -11,10 +12,10 @@ export function Post() {
 	}));
 
 	const createPost = useMutation(() => ({
-		mutationFn: (data: { title: string }) => {
-			return api.post.create.mutate({ name: data.title });
-		},
-		onSuccess: (data) => {
+		mutationKey: ["createPost"],
+		mutationFn: (data: { title: string }) =>
+			api.post.create.mutate({ name: data.title }),
+		onSuccess: () => {
 			latestPosts.refetch();
 			setTitle("");
 		},
@@ -22,11 +23,16 @@ export function Post() {
 
 	return (
 		<div class="w-full">
-			{latestPosts.data ? (
-				<p class="truncate">Your most recent post: {latestPosts.data.name}</p>
-			) : (
-				<p>You have no posts yet.</p>
-			)}
+			<Show
+				when={latestPosts.data}
+				fallback={<p class="text-gray-500">No posts found.</p>}
+			>
+				{(latestPosts) => (
+					<p class="text-gray-500">
+						Latest post: <span class="text-white">{latestPosts().name}</span>
+					</p>
+				)}
+			</Show>
 			<form
 				onSubmit={(e) => {
 					e.preventDefault();
@@ -51,4 +57,4 @@ export function Post() {
 			</form>
 		</div>
 	);
-}
+};
